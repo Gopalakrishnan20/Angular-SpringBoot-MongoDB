@@ -53,8 +53,8 @@ public class StudentService {
 		
 	}
 	
-	public Student updateStudent(Student newData) {
-		Student oldData=repo.findById(newData.getId()).get();
+	public Student updateStudent(Student newData,String id) {
+		Student oldData=repo.findById(id).get();				;
 		oldData.setFirstName(newData.getFirstName());
 		oldData.setLastName(newData.getLastName());
 		oldData.setEmail(newData.getEmail());

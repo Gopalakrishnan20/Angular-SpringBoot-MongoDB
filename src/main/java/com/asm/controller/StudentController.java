@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,7 +19,7 @@ import org.springframework.web.client.HttpClientErrorException.NotFound;
 import com.asm.models.Student;
 import com.asm.service.StudentService;
 
-
+@CrossOrigin(origins="http://localhost:4200")
 @RestController
 @RequestMapping("/api/students")
 public class StudentController {
@@ -55,9 +56,9 @@ public class StudentController {
 		return service.deleteById(id);		
 	}
 	
-	@PutMapping
-	Student updateStudent(@RequestBody Student newData) {
-		return service.updateStudent(newData);
+	@PutMapping("/{id}")
+	Student updateStudent(@PathVariable String id, @RequestBody Student newData) {
+		return service.updateStudent(newData,id);
 	}
 
 	
